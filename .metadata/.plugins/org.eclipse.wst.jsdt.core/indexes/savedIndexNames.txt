@@ -1,0 +1,7 @@
+INDEX VERSION 1.4+D:\Workspace\pluralsight-camel-intro-master\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
+3156108788.index
+2502065568.index
+836845717.index
+3228848210.index
+2175273697.index
+477601711.index

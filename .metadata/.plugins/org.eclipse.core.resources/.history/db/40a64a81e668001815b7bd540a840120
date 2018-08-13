@@ -1,0 +1,15 @@
+camel:
+  springboot:
+    name: CamelRestJpa
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: *
+    shutdown:
+      enabled: true    
+      
+      
+      

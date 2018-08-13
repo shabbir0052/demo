@@ -1,0 +1,71 @@
+
+package aaancnu_wsdl_retrieveconvertedpolicyinfo_version2.com.aaancnuit;
+
+import javax.xml.bind.JAXBElement;
+import javax.xml.bind.annotation.XmlElementDecl;
+import javax.xml.bind.annotation.XmlRegistry;
+import javax.xml.namespace.QName;
+
+
+/**
+ * This object contains factory methods for each 
+ * Java content interface and Java element interface 
+ * generated in the aaancnu_wsdl_retrieveconvertedpolicyinfo_version2.com.aaancnuit package. 
+ * <p>An ObjectFactory allows you to programatically 
+ * construct new instances of the Java representation 
+ * for XML content. The Java representation of XML 
+ * content can consist of schema derived interfaces 
+ * and classes representing the binding of schema 
+ * type definitions, element declarations and model 
+ * groups.  Factory methods for each of these are 
+ * provided in this class.
+ * 
+ */
+@XmlRegistry
+public class ObjectFactory {
+
+    private final static QName _RetrieveConvertedPolicyInfoResponse_QNAME = new QName("http://www.aaancnuit.com.AAANCNU_WSDL_RetrieveConvertedPolicyInfo_version2", "retrieveConvertedPolicyInfoResponse");
+    private final static QName _RetrieveConvertedPolicyInfoRequest_QNAME = new QName("http://www.aaancnuit.com.AAANCNU_WSDL_RetrieveConvertedPolicyInfo_version2", "retrieveConvertedPolicyInfoRequest");
+
+    /**
+     * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: aaancnu_wsdl_retrieveconvertedpolicyinfo_version2.com.aaancnuit
+     * 
+     */
+    public ObjectFactory() {
+    }
+
+    /**
+     * Create an instance of {@link RetrieveConvertedPolicyInfoRequest }
+     * 
+     */
+    public RetrieveConvertedPolicyInfoRequest createRetrieveConvertedPolicyInfoRequest() {
+        return new RetrieveConvertedPolicyInfoRequest();
+    }
+
+    /**
+     * Create an instance of {@link RetrieveConvertedPolicyInfoResponse }
+     * 
+     */
+    public RetrieveConvertedPolicyInfoResponse createRetrieveConvertedPolicyInfoResponse() {
+        return new RetrieveConvertedPolicyInfoResponse();
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link RetrieveConvertedPolicyInfoResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://www.aaancnuit.com.AAANCNU_WSDL_RetrieveConvertedPolicyInfo_version2", name = "retrieveConvertedPolicyInfoResponse")
+    public JAXBElement<RetrieveConvertedPolicyInfoResponse> createRetrieveConvertedPolicyInfoResponse(RetrieveConvertedPolicyInfoResponse value) {
+        return new JAXBElement<RetrieveConvertedPolicyInfoResponse>(_RetrieveConvertedPolicyInfoResponse_QNAME, RetrieveConvertedPolicyInfoResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link RetrieveConvertedPolicyInfoRequest }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://www.aaancnuit.com.AAANCNU_WSDL_RetrieveConvertedPolicyInfo_version2", name = "retrieveConvertedPolicyInfoRequest")
+    public JAXBElement<RetrieveConvertedPolicyInfoRequest> createRetrieveConvertedPolicyInfoRequest(RetrieveConvertedPolicyInfoRequest value) {
+        return new JAXBElement<RetrieveConvertedPolicyInfoRequest>(_RetrieveConvertedPolicyInfoRequest_QNAME, RetrieveConvertedPolicyInfoRequest.class, null, value);
+    }
+
+}

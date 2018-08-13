@@ -1,0 +1,6 @@
+camel:
+  springboot:
+    # The Camel context name
+    name: CamelRestJpa
+
+

@@ -1,0 +1,41 @@
+package com.example.demo;
+
+import org.apache.camel.builder.RouteBuilder;
+import org.apache.camel.model.rest.RestBindingMode;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.stereotype.Component;
+
+
+@SpringBootApplication
+public class DemoApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(DemoApplication.class, args);
+	}
+	
+	
+	 @Component
+	    class RestApi extends RouteBuilder {
+
+	        @Override
+	        public void configure() {
+	            restConfiguration()
+	                .contextPath("/camel-rest-jpa").apiContextPath("/api-doc")
+	                    .apiProperty("api.title", "Camel REST API")
+	                    .apiProperty("api.version", "1.0")
+	                    .apiProperty("cors", "true")
+	                    .apiContextRouteId("doc-api")
+	                .bindingMode(RestBindingMode.json);
+
+	            rest("/hello").description("Get hello REST service")
+	                .get("/").description("echo back hello service")
+	                .to("direct:hello");
+	            
+	            from("direct:hello")
+                .transform().constant("Hello World");
+	            
+	        }
+	    }
+
+}

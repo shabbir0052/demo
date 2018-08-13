@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema targetNamespace="http://www.aaancnuit.com.AAANCNU_Common_version2"
+	xmlns:AAANCNU_Common_version2="http://www.aaancnuit.com.AAANCNU_Common_version2"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+			<!-- ENUMERATIONS -->
+
+			<xsd:simpleType name="RuleCategory">
+				<xsd:restriction base="xsd:string">
+					<xsd:enumeration value="Product Constraint"/>  <!--Product Constraint-->
+					<xsd:enumeration value="Mandatory Data"/>  <!--Mandatory Data-->
+					<xsd:enumeration value="Eligibility"/>  <!--Eligibility-->
+					<xsd:enumeration value="Underwriting"/>  <!--Underwriting-->
+					<xsd:enumeration value="Informational"/>  <!--Informational-->
+					<xsd:enumeration value="Clerical"/>  <!--Clerical-->
+				</xsd:restriction>
+			</xsd:simpleType>
+
+			<xsd:simpleType name="RuleSeverity">
+				<xsd:restriction base="xsd:string">
+					<xsd:enumeration value="Informational"/>  <!--Informational-->
+					<xsd:enumeration value="High"/>  <!--High-->
+					<xsd:enumeration value="Medium"/>  <!--Medium-->
+					<xsd:enumeration value="Low"/>  <!--Low-->
+					<xsd:enumeration value="Error"/>  <!--Error-->
+				</xsd:restriction>
+			</xsd:simpleType>
+
+			<!-- end of ENUMERATIONS -->
+
+			<!-- RESTRICTIONS -->
+
+			<!-- end of RESTRICTIONS -->
+
+			<!-- TYPES -->
+
+			<xsd:complexType name="RuleResult" abstract="false">
+						<xsd:sequence>
+							<xsd:element name="ruleId" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+							<xsd:element name="ruleDescription" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+							<xsd:element name="action" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+							<xsd:element name="severity" type="AAANCNU_Common_version2:RuleSeverity" minOccurs="0" maxOccurs="1"/>
+							<xsd:element name="isOverridable" type="xsd:boolean" minOccurs="0" maxOccurs="1"/>
+							<xsd:element name="overrideAuthorityLevel" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+							<xsd:element name="instanceId" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+							<xsd:element name="sourceSystem" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+							<xsd:element name="timestamp" type="xsd:dateTime" minOccurs="0" maxOccurs="1"/>
+							<xsd:element name="category" type="AAANCNU_Common_version2:RuleCategory" minOccurs="0" maxOccurs="1"/>
+							<xsd:element name="correlationId" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+							<xsd:element name="ruleAttributes" type="AAANCNU_Common_version2:RuleAttributes" minOccurs="0" maxOccurs="1"/>
+							<!-- Type extension using xsd:anyType -->
+							<xsd:element name="ruleResultExtension" type="xsd:anyType" minOccurs="0"  maxOccurs="unbounded" />
+						</xsd:sequence>
+			</xsd:complexType>
+
+			<xsd:complexType name="RuleAttribute" abstract="false">
+						<xsd:sequence>
+							<xsd:element name="stringRef" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
+							<!-- Type extension using xsd:anyType -->
+							<xsd:element name="ruleAttributeExtension" type="xsd:anyType" minOccurs="0"  maxOccurs="unbounded" />
+						</xsd:sequence>
+			</xsd:complexType>
+
+			<xsd:complexType name="RuleResponse" abstract="false">
+						<xsd:sequence>
+							<xsd:element name="timestamp" type="xsd:dateTime" minOccurs="0" maxOccurs="1"/>
+							<xsd:element name="ruleDecision" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+							<xsd:element name="ruleScore" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+							<xsd:element name="service" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+							<xsd:element name="ruleScorecard" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
+							<xsd:element name="ruleResults" type="AAANCNU_Common_version2:RuleResults" minOccurs="0" maxOccurs="1"/>
+							<!-- Type extension using xsd:anyType -->
+							<xsd:element name="ruleResponseExtension" type="xsd:anyType" minOccurs="0"  maxOccurs="unbounded" />
+						</xsd:sequence>
+			</xsd:complexType>
+
+			<xsd:complexType name="RuleResults" abstract="false">
+						<xsd:sequence>
+							<xsd:element name="ruleResult" type="AAANCNU_Common_version2:RuleResult" minOccurs="0" maxOccurs="unbounded"/>
+							<!-- Type extension using xsd:anyType -->
+							<xsd:element name="ruleResultsExtension" type="xsd:anyType" minOccurs="0"  maxOccurs="unbounded" />
+						</xsd:sequence>
+			</xsd:complexType>
+
+			<xsd:complexType name="ErrorInfo" abstract="false">
+						<xsd:sequence>
+							<xsd:element name="errorTimeStamp" type="xsd:dateTime" minOccurs="0" maxOccurs="1"/>
+							<xsd:element name="errorCode" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+							<xsd:element name="severity" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+							<xsd:element name="errorMessageText" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+							<xsd:element name="friendlyErrorMessage" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+							<xsd:element name="vendorMessageText" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+							<xsd:element name="stackTrace" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+							<xsd:element name="sqlState" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+							<xsd:element name="serviceName" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+							<xsd:element name="sourceSystem" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+							<xsd:element name="RuleResponse" type="AAANCNU_Common_version2:RuleResponse" minOccurs="0" maxOccurs="unbounded"/>
+							<!-- Type extension using xsd:anyType -->
+							<xsd:element name="errorInfoExtension" type="xsd:anyType" minOccurs="0"  maxOccurs="unbounded" />
+						</xsd:sequence>
+			</xsd:complexType>
+			<xsd:element name="ErrorInfo" type="AAANCNU_Common_version2:ErrorInfo"/>
+
+			<xsd:complexType name="ApplicationContext" abstract="false">
+						<xsd:sequence>
+							<xsd:element name="userId" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+							<xsd:element name="transactionType" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+							<xsd:element name="application" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+							<xsd:element name="subSystem" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+							<xsd:element name="address" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+							<xsd:element name="correlationId" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+							<!-- Type extension using xsd:anyType -->
+							<xsd:element name="applicationContextExtension" type="xsd:anyType" minOccurs="0"  maxOccurs="unbounded" />
+						</xsd:sequence>
+			</xsd:complexType>
+
+			<xsd:complexType name="RuleAttributes" abstract="false">
+						<xsd:sequence>
+							<xsd:element name="ruleattribute" type="AAANCNU_Common_version2:RuleAttribute" minOccurs="0" maxOccurs="unbounded"/>
+							<!-- Type extension using xsd:anyType -->
+							<xsd:element name="ruleAttributesExtension" type="xsd:anyType" minOccurs="0"  maxOccurs="unbounded" />
+						</xsd:sequence>
+			</xsd:complexType>
+
+			<!-- end of TYPES -->
+
+</xsd:schema>

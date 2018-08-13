@@ -1,0 +1,2 @@
+@javax.xml.bind.annotation.XmlSchema(namespace = "http://www.aaancnuit.com.AAANCNU_WSDL_RetrieveConvertedPolicyInfo_version2")
+package aaancnu_wsdl_retrieveconvertedpolicyinfo_version2.com.aaancnuit;

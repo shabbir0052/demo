@@ -1,0 +1,12 @@
+camel.springboot.name=CamelRestJpa
+
+
+soa.api.path=/camel-rest-api
+
+logging.config=classpath:logback.xml
+
+server.address=0.0.0.0
+management.address=0.0.0.0
+management.port=8081
+endpoints.enabled = true
+endpoints.health.enabled = true

@@ -1,0 +1,16 @@
+camel:
+  springboot:
+    # The Camel context name
+    name: CamelRestJpa
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: *
+    shutdown:
+      enabled: true    
+      
+      
+      

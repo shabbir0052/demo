@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema targetNamespace="http://www.aaancnuit.com.AAANCNU_RetrieveConvertedPolicyInfo_version2"
+	xmlns:AAANCNU_RetrieveConvertedPolicyInfo_version2="http://www.aaancnuit.com.AAANCNU_RetrieveConvertedPolicyInfo_version2"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+
+	<!-- ENUMERATIONS -->
+
+	<!-- end of ENUMERATIONS -->
+
+	<!-- RESTRICTIONS -->
+
+	<!-- end of RESTRICTIONS -->
+
+	<!-- TYPES -->
+
+			<xsd:complexType name="PolicySource" abstract="false">
+						<xsd:sequence>
+							<xsd:element name="policyNumber" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+							<xsd:element name="productCode" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+							<xsd:element name="riskState" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+							<xsd:element name="dataSource" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+							<xsd:element name="type" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+							<!-- Type extension using xsd:anyType -->
+							<xsd:element name="policySourceExtension" type="xsd:anyType" minOccurs="0"  maxOccurs="unbounded" />
+						</xsd:sequence>
+			</xsd:complexType>
+
+			<xsd:complexType name="ConvertedPolicyInfo" abstract="false">
+						<xsd:sequence>
+							<xsd:element name="returnCode" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+							<xsd:element name="returnMessage" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+							<xsd:element name="requestedPolicy" type="AAANCNU_RetrieveConvertedPolicyInfo_version2:PolicySource" minOccurs="0" maxOccurs="1"/>
+							<xsd:element name="convertedPolicy" type="AAANCNU_RetrieveConvertedPolicyInfo_version2:ConvertedPolicy" minOccurs="0" maxOccurs="1"/>
+							<!-- Type extension using xsd:anyType -->
+							<xsd:element name="convertedPolicyInfoExtension" type="xsd:anyType" minOccurs="0"  maxOccurs="unbounded" />
+						</xsd:sequence>
+			</xsd:complexType>
+
+			<xsd:complexType name="PolicyProductSource" abstract="false">
+				<xsd:complexContent>
+					<xsd:extension base="AAANCNU_RetrieveConvertedPolicyInfo_version2:PolicySource">
+						<xsd:sequence>
+							<xsd:element name="writingCompany" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+							<xsd:element name="lineOfBusiness" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+							<xsd:element name="policyPrefix" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+							<xsd:element name="zipCode" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+							<!-- Type extension using xsd:anyType -->
+							<xsd:element name="policyProductSourceExtension" type="xsd:anyType" minOccurs="0"  maxOccurs="unbounded" />
+						</xsd:sequence>
+					</xsd:extension>
+				</xsd:complexContent>
+			</xsd:complexType>
+
+			<xsd:complexType name="ConvertedPolicy" abstract="false">
+				<xsd:complexContent>
+					<xsd:extension base="AAANCNU_RetrieveConvertedPolicyInfo_version2:PolicyProductSource">
+						<xsd:sequence>
+							<xsd:element name="inceptionDate" type="xsd:date" minOccurs="0" maxOccurs="1"/>
+							<xsd:element name="billingAccountId" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+							<xsd:element name="renewalEffectiveDate" type="xsd:date" minOccurs="0" maxOccurs="1"/>
+							<xsd:element name="conversionDate" type="xsd:date" minOccurs="0" maxOccurs="1"/>
+							<xsd:element name="status" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+							<xsd:element name="conversionEffectiveDate" type="xsd:date" minOccurs="0" maxOccurs="1"/>
+							<!-- Type extension using xsd:anyType -->
+							<xsd:element name="convertedPolicyExtension" type="xsd:anyType" minOccurs="0"  maxOccurs="unbounded" />
+						</xsd:sequence>
+					</xsd:extension>
+				</xsd:complexContent>
+			</xsd:complexType>
+
+</xsd:schema>

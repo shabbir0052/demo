@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="hawtio-default-offline-1.5.7">
+        <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
+        <wb-resource deploy-path="/WEB-INF/classes/" source-path="/ImportedClasses"/>
+        <dependent-module archiveName="hawtio-json-schema-mbean-1.5.7.jar" deploy-path="/WEB-INF/lib/" handle="module:/resource/hawtio-json-schema-mbean-1.5.7/hawtio-json-schema-mbean-1.5.7">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="maven-model-3.0.4.jar" deploy-path="/WEB-INF/lib/" handle="module:/resource/maven-model-3.0.4/maven-model-3.0.4">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="commons-fileupload-1.3.2.jar" deploy-path="/WEB-INF/lib/" handle="module:/resource/commons-fileupload-1.3.2/commons-fileupload-1.3.2">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="maven-model-builder-3.0.4.jar" deploy-path="/WEB-INF/lib/" handle="module:/resource/maven-model-builder-3.0.4/maven-model-builder-3.0.4">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="commons-io-2.2.jar" deploy-path="/WEB-INF/lib/" handle="module:/resource/commons-io-2.2/commons-io-2.2">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="json-simple-1.1.1.jar" deploy-path="/WEB-INF/lib/" handle="module:/resource/json-simple-1.1.1/json-simple-1.1.1">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="jolokia-jvm-1.3.7-agent.jar" deploy-path="/WEB-INF/lib/" handle="module:/resource/jolokia-jvm-1.3.7-agent/jolokia-jvm-1.3.7-agent">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="wagon-ahc-1.2.1.jar" deploy-path="/WEB-INF/lib/" handle="module:/resource/wagon-ahc-1.2.1/wagon-ahc-1.2.1">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="plexus-container-default-1.6.jar" deploy-path="/WEB-INF/lib/" handle="module:/resource/plexus-container-default-1.6/plexus-container-default-1.6">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="plexus-utils-2.1.jar" deploy-path="/WEB-INF/lib/" handle="module:/resource/plexus-utils-2.1/plexus-utils-2.1">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="maven-repository-metadata-3.0.4.jar" deploy-path="/WEB-INF/lib/" handle="module:/resource/maven-repository-metadata-3.0.4/maven-repository-metadata-3.0.4">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="org.osgi.core-4.3.0.jar" deploy-path="/WEB-INF/lib/" handle="module:/resource/org.osgi.core-4.3.0/org.osgi.core-4.3.0">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="xbean-reflect-3.7.jar" deploy-path="/WEB-INF/lib/" handle="module:/resource/xbean-reflect-3.7/xbean-reflect-3.7">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="jackson-module-jsonSchema-2.7.0.jar" deploy-path="/WEB-INF/lib/" handle="module:/resource/jackson-module-jsonSchema-2.7.0/jackson-module-jsonSchema-2.7.0">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="hawtio-local-jvm-mbean-1.5.7.jar" deploy-path="/WEB-INF/lib/" handle="module:/resource/hawtio-local-jvm-mbean-1.5.7/hawtio-local-jvm-mbean-1.5.7">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="netty-3.2.5.Final.jar" deploy-path="/WEB-INF/lib/" handle="module:/resource/netty-3.2.5.Final/netty-3.2.5.Final">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="slf4j-api-1.7.21.jar" deploy-path="/WEB-INF/lib/" handle="module:/resource/slf4j-api-1.7.21/slf4j-api-1.7.21">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="guava-21.0.jar" deploy-path="/WEB-INF/lib/" handle="module:/resource/guava-21.0/guava-21.0">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="plexus-interpolation-1.14.jar" deploy-path="/WEB-INF/lib/" handle="module:/resource/plexus-interpolation-1.14/plexus-interpolation-1.14">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="org.apache.aries.blueprint.web-1.0.0.jar" deploy-path="/WEB-INF/lib/" handle="module:/resource/org.apache.aries.blueprint.web-1.0.0/org.apache.aries.blueprint.web-1.0.0">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="jackson-databind-2.7.0.jar" deploy-path="/WEB-INF/lib/" handle="module:/resource/jackson-databind-2.7.0/jackson-databind-2.7.0">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="plexus-component-annotations-1.5.5.jar" deploy-path="/WEB-INF/lib/" handle="module:/resource/plexus-component-annotations-1.5.5/plexus-component-annotations-1.5.5">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="validation-api-1.1.0.Final.jar" deploy-path="/WEB-INF/lib/" handle="module:/resource/validation-api-1.1.0.Final/validation-api-1.1.0.Final">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="hawtio-git-1.5.7.jar" deploy-path="/WEB-INF/lib/" handle="module:/resource/hawtio-git-1.5.7/hawtio-git-1.5.7">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="org.apache.aries.blueprint.noosgi-1.0.0.jar" deploy-path="/WEB-INF/lib/" handle="module:/resource/org.apache.aries.blueprint.noosgi-1.0.0/org.apache.aries.blueprint.noosgi-1.0.0">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="async-http-client-1.6.5.jar" deploy-path="/WEB-INF/lib/" handle="module:/resource/async-http-client-1.6.5/async-http-client-1.6.5">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="httpclient-4.5.2.jar" deploy-path="/WEB-INF/lib/" handle="module:/resource/httpclient-4.5.2/httpclient-4.5.2">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="aether-api-1.13.1.jar" deploy-path="/WEB-INF/lib/" handle="module:/resource/aether-api-1.13.1/aether-api-1.13.1">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="log4j-1.2.17.jar" deploy-path="/WEB-INF/lib/" handle="module:/resource/log4j-1.2.17/log4j-1.2.17">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="aether-util-1.13.1.jar" deploy-path="/WEB-INF/lib/" handle="module:/resource/aether-util-1.13.1/aether-util-1.13.1">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="httpcore-4.4.4.jar" deploy-path="/WEB-INF/lib/" handle="module:/resource/httpcore-4.4.4/httpcore-4.4.4">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="aether-connector-file-1.13.1.jar" deploy-path="/WEB-INF/lib/" handle="module:/resource/aether-connector-file-1.13.1/aether-connector-file-1.13.1">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="commons-logging-1.0.3.jar" deploy-path="/WEB-INF/lib/" handle="module:/resource/commons-logging-1.0.3/commons-logging-1.0.3">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="jackson-core-2.7.0.jar" deploy-path="/WEB-INF/lib/" handle="module:/resource/jackson-core-2.7.0/jackson-core-2.7.0">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="jackson-annotations-2.7.0.jar" deploy-path="/WEB-INF/lib/" handle="module:/resource/jackson-annotations-2.7.0/jackson-annotations-2.7.0">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="commons-codec-1.10.jar" deploy-path="/WEB-INF/lib/" handle="module:/resource/commons-codec-1.10/commons-codec-1.10">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="hawtio-aether-1.5.7.jar" deploy-path="/WEB-INF/lib/" handle="module:/resource/hawtio-aether-1.5.7/hawtio-aether-1.5.7">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="aether-impl-1.13.1.jar" deploy-path="/WEB-INF/lib/" handle="module:/resource/aether-impl-1.13.1/aether-impl-1.13.1">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="guava-14.0.1.jar" deploy-path="/WEB-INF/lib/" handle="module:/resource/guava-14.0.1/guava-14.0.1">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="plexus-classworlds-2.4.jar" deploy-path="/WEB-INF/lib/" handle="module:/resource/plexus-classworlds-2.4/plexus-classworlds-2.4">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="org.osgi.enterprise-4.2.0.jar" deploy-path="/WEB-INF/lib/" handle="module:/resource/org.osgi.enterprise-4.2.0/org.osgi.enterprise-4.2.0">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="hawtio-insight-log-1.5.7.jar" deploy-path="/WEB-INF/lib/" handle="module:/resource/hawtio-insight-log-1.5.7/hawtio-insight-log-1.5.7">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="aether-connector-wagon-1.13.1.jar" deploy-path="/WEB-INF/lib/" handle="module:/resource/aether-connector-wagon-1.13.1/aether-connector-wagon-1.13.1">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="maven-aether-provider-3.0.4.jar" deploy-path="/WEB-INF/lib/" handle="module:/resource/maven-aether-provider-3.0.4/maven-aether-provider-3.0.4">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="hawtio-system-1.5.7.jar" deploy-path="/WEB-INF/lib/" handle="module:/resource/hawtio-system-1.5.7/hawtio-system-1.5.7">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="jackson-module-jaxb-annotations-2.7.0.jar" deploy-path="/WEB-INF/lib/" handle="module:/resource/jackson-module-jaxb-annotations-2.7.0/jackson-module-jaxb-annotations-2.7.0">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="hawtio-util-1.5.7.jar" deploy-path="/WEB-INF/lib/" handle="module:/resource/hawtio-util-1.5.7/hawtio-util-1.5.7">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="jolokia-core-1.3.7.jar" deploy-path="/WEB-INF/lib/" handle="module:/resource/jolokia-core-1.3.7/jolokia-core-1.3.7">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="wagon-provider-api-2.7.jar" deploy-path="/WEB-INF/lib/" handle="module:/resource/wagon-provider-api-2.7/wagon-provider-api-2.7">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="aether-spi-1.13.1.jar" deploy-path="/WEB-INF/lib/" handle="module:/resource/aether-spi-1.13.1/aether-spi-1.13.1">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="slf4j-log4j12-1.7.21.jar" deploy-path="/WEB-INF/lib/" handle="module:/resource/slf4j-log4j12-1.7.21/slf4j-log4j12-1.7.21">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="hawtio-core-1.5.7.jar" deploy-path="/WEB-INF/lib/" handle="module:/resource/hawtio-core-1.5.7/hawtio-core-1.5.7">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <property name="context-root" value="hawtio-default-offline-1.5.7"/>
+        <property name="java-output-path" value="/hawtio-default-offline-1.5.7/build/classes"/>
+    </wb-module>
+</project-modules>

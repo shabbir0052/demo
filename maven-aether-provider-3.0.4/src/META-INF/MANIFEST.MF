@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Archiver-Version: Plexus Archiver
+Created-By: Apache Maven
+Built-By: olamy
+Build-Jdk: 1.6.0_29
+Specification-Title: Maven Aether Provider
+Specification-Version: 3.0.4
+Specification-Vendor: The Apache Software Foundation
+Implementation-Title: Maven Aether Provider
+Implementation-Version: 3.0.4
+Implementation-Vendor-Id: org.apache.maven
+Implementation-Vendor: The Apache Software Foundation
+

@@ -1,0 +1,8 @@
+camel.springboot.name=CamelRestJpa
+
+component.servlet.mapping.contextPath=/camel-rest-jpa/*
+
+#for enabling remote shutdown
+endpoint.shutdown.enabled=true
+management.endpoints.web.exposure.include=*
+management.server.port=8081

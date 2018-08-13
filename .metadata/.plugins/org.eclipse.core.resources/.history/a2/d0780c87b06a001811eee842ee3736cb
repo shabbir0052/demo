@@ -1,0 +1,91 @@
+package com.example.demo;
+
+import org.apache.camel.CamelContext;
+import org.apache.camel.Exchange;
+import org.apache.camel.builder.RouteBuilder;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.web.support.SpringBootServletInitializer;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.http.MediaType;
+import org.springframework.stereotype.Component;
+import org.apache.camel.model.rest.RestBindingMode;
+import org.apache.camel.impl.DefaultCamelContext;
+
+
+
+@SpringBootApplication
+@ComponentScan(basePackages="com.example.demo")
+public class DemoApplication  extends SpringBootServletInitializer  {
+	
+
+	public static void main(String[] args) {
+		System.out.println("In the main");
+		SpringApplication.run(DemoApplication.class, args);
+	}
+	
+	
+	 @Component
+	    class DemoRestApi extends RouteBuilder {
+
+	        @Override
+	        public void configure() {
+	        	 CamelContext context = new DefaultCamelContext();
+	            restConfiguration()
+	            		.contextPath("/camel-rest-jpa")
+	            		.enableCORS(true)
+	            		.apiContextPath("/api-doc")
+	            		.apiProperty("api.title", "Camel REST API")
+	                    .apiProperty("api.version", "1.0")
+	                    .apiProperty("cors", "true")
+	                    .apiContextRouteId("doc-api")
+	                    .bindingMode(RestBindingMode.json);
+	            	
+	            rest("/say").description("Get hello REST service")
+	                 .id("api-route")
+	                .get("/hello").description("echo back hello service")
+	                .produces(MediaType.APPLICATION_JSON_VALUE)
+	                .consumes(MediaType.APPLICATION_JSON_VALUE)
+	                .to("direct:hello");
+	            
+	            from("direct:hello")
+	            .tracing()
+	            .transform().constant("Hello World")
+	            .setHeader(Exchange.HTTP_RESPONSE_CODE, constant(201));
+	            
+	        }
+	    }
+	 
+	 
+	 @Component
+	    class ConvertedPolicyInfo extends RouteBuilder {
+
+	        @Override
+	        public void configure() {
+	        	 CamelContext context = new DefaultCamelContext();
+	            restConfiguration()
+	            		.contextPath("/convertedPolicy")
+	            		.enableCORS(true)
+	            		.apiContextPath("/api-doc")
+	            		.apiProperty("api.title", "ConvertedPolicy REST API")
+	                    .apiProperty("api.version", "1.0")
+	                    .apiProperty("cors", "true")
+	                    .apiContextRouteId("doc-api")
+	                    .bindingMode(RestBindingMode.json);
+	            	
+	            rest("/policy").description("Get hello REST service")
+	                 .id("api-route")
+	                .get("/converted").description("retrieveConvertedPolicy")
+	                .produces(MediaType.APPLICATION_JSON_VALUE)
+	                .consumes(MediaType.APPLICATION_JSON_VALUE)
+	                .to("direct:hello");
+	            
+	            from("direct:hello")
+	            .tracing()
+	            .transform().constant("Hello World")
+	            .setHeader(Exchange.HTTP_RESPONSE_CODE, constant(201));
+	            
+	        }
+	    }
+
+}

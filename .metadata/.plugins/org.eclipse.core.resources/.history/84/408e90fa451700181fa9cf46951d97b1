@@ -1,0 +1,33 @@
+package com.pluralsight.orderfulfillment.config;
+
+import org.apache.camel.spring.javaconfig.CamelConfiguration;
+
+@org.springframework.context.annotation.Configuration
+public class IntegerationConfig extends CamelConfiguration {
+	 
+	@javax.inject.Inject
+	private org.springframework.core.env.Environment environment;
+	
+	@Override
+	  public java.util.List<org.apache.camel.builder.RouteBuilder> routes(){
+		java.util.List<org.apache.camel.builder.RouteBuilder> routelist=
+				new java.util.ArrayList<org.apache.camel.builder.RouteBuilder>();
+		routelist.add(new org.apache.camel.builder.RouteBuilder(){
+			@Override 
+			 public void configure () throws  Exception{
+			  from(
+					  "file://"
+					    +environment.getProperty("order.fullfillment.center.1.outbound.folder")
+					    +"?noop=true"
+					  )
+			   .to("file://"
+					   +environment.getProperty("order.fullfillment.center.1.outbound.folder")
+					   +"/test");		  
+			}
+		} );
+		return routelist;
+	}
+
+}
+
+

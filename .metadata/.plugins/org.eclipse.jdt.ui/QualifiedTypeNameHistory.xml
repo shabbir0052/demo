@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="org.springframework.context.annotation.Configuration"/>
+<fullyQualifiedTypeName name="javax.inject.Inject"/>
+<fullyQualifiedTypeName name="org.springframework.core.env.Environment"/>
+<fullyQualifiedTypeName name="org.apache.camel.builder.RouteBuilder"/>
+<fullyQualifiedTypeName name="java.io.StringWriter"/>
+<fullyQualifiedTypeName name="javax.xml.bind.Marshaller"/>
+<fullyQualifiedTypeName name="javax.xml.bind.JAXBContext"/>
+<fullyQualifiedTypeName name="com.pluralsight.orderfulfillment.generated.ObjectFactory"/>
+<fullyQualifiedTypeName name="com.pluralsight.orderfulfillment.generated.OrderType"/>
+<fullyQualifiedTypeName name="com.pluralsight.orderfulfillment.generated.FulfillmentCenter"/>
+<fullyQualifiedTypeName name="javax.xml.datatype.DatatypeFactory"/>
+<fullyQualifiedTypeName name="com.pluralsight.orderfulfillment.generated.OrderItemType"/>
+<fullyQualifiedTypeName name="com.pluralsight.orderfulfillment.order.OrderItemEntity"/>
+<fullyQualifiedTypeName name="com.pluralsight.orderfulfillment.order.fulfillment.FulfillmentProcessor"/>
+<fullyQualifiedTypeName name="com.pluralsight.orderfulfillment.order.OrderItemMessageTranslator"/>
+<fullyQualifiedTypeName name="javax.jms.ConnectionFactory"/>
+<fullyQualifiedTypeName name="org.apache.activemq.ActiveMQConnectionFactory"/>
+<fullyQualifiedTypeName name="org.apache.activemq.pool.PooledConnectionFactory"/>
+<fullyQualifiedTypeName name="org.apache.camel.Builder"/>
+<fullyQualifiedTypeName name="com.pluralsight.orderfulfillment.generated.Order"/>
+<fullyQualifiedTypeName name="javax.xml.bind.Unmarshaller"/>
+<fullyQualifiedTypeName name="java.io.StringReader"/>
+<fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
+</qualifiedTypeNameHistroy>

@@ -1,0 +1,27 @@
+package com.csaa.processor;
+
+import org.springframework.stereotype.Component;
+
+import aaancnu_wsdl_retrieveconvertedpolicyinfo_version2.com.aaancnuit.RetrieveConvertedPolicyInfoRequest;
+
+@Component
+public class RequestProcessor {
+	
+	public RetrieveConvertedPolicyInfoRequest transformToConveredPolicySOAPServiceRequest(com.csaa.bo.ConvertedPolicyInfo PolicyInfoJson) {
+		String output=null;
+    	try {
+    		if (orderXML==null) {
+    			throw new Exception
+    			("Order xml was not bound to the method via"
+        				+ "integeration framework");
+    		}
+    		output = processCreateOrderMessageRequest(orderXML);
+    		
+    	} catch(Exception e) {
+    		LOG.error("Fullfillmentcenterone message transalation failed  ", e);
+    	}
+    	 
+    	return output;
+	}
+
+}

@@ -1,0 +1,134 @@
+package com.csaa.config;
+
+import org.apache.camel.CamelContext;
+import org.apache.camel.Exchange;
+import org.apache.camel.builder.RouteBuilder;
+import org.apache.camel.component.kafka.KafkaComponent;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.web.support.SpringBootServletInitializer;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.http.MediaType;
+import org.springframework.stereotype.Component;
+import org.apache.camel.model.rest.RestBindingMode;
+import org.apache.camel.impl.DefaultCamelContext;
+import com.csaa.bo.*;
+
+
+
+@SpringBootApplication
+@ComponentScan(basePackages="com.csaa.config")
+public class DemoApplication  extends SpringBootServletInitializer  {
+	
+
+	public static void main(String[] args) {
+		System.out.println("In the main");
+		SpringApplication.run(DemoApplication.class, args);
+	}
+	
+	
+	 @Component
+	    class DemoRestApi extends RouteBuilder {
+
+	        @Override
+	        public void configure() {
+	        	 CamelContext context = new DefaultCamelContext();
+	            restConfiguration()
+	            		.contextPath("/camel-rest-jpa")
+	            		.enableCORS(true)
+	            		.apiContextPath("/api-doc")
+	            		.apiProperty("api.title", "Camel REST API")
+	                    .apiProperty("api.version", "1.0")
+	                    .apiProperty("cors", "true")
+	                    .apiContextRouteId("doc-api")
+	                    .bindingMode(RestBindingMode.json);
+	            	
+	            rest("/say").description("Get hello REST service")
+	                 .id("api-route")
+	                .get("/hello").description("echo back hello service")
+	                .produces(MediaType.APPLICATION_JSON_VALUE)
+	                .consumes(MediaType.APPLICATION_JSON_VALUE)
+	                .to("direct:hello");
+	            
+	            from("direct:hello")
+	            .tracing()
+	            .transform().constant("Hello World")
+	            .setHeader(Exchange.HTTP_RESPONSE_CODE, constant(201));
+	            
+	        }
+	    }
+	 
+	 
+	 @Component
+	    class ConvertedPolicyInfo extends RouteBuilder {
+
+	        @Override
+	        public void configure() {
+	        	 CamelContext context = new DefaultCamelContext();
+	            restConfiguration()
+	            		.contextPath("/convertedPolicy")
+	            		.enableCORS(true)
+	            		.apiContextPath("/api-doc1")
+	            		.apiProperty("api.title", "ConvertedPolicy REST API")
+	                    .apiProperty("api.version", "1.0")
+	                    .apiProperty("cors", "true")
+	                    .apiContextRouteId("doc-api")
+	                    .bindingMode(RestBindingMode.json);
+	            	
+	            rest("/policy").description("Get hello REST service")
+	                 .id("api-conv")
+	                 .post("/converted").description("retrieveConvertedPolicy")
+	                .produces(MediaType.APPLICATION_JSON_VALUE)
+	                .consumes(MediaType.APPLICATION_JSON_VALUE)
+	                .bindingMode(RestBindingMode.auto)
+	                .type(com.csaa.bo.ConvertedPolicyInfo.class)
+	                .to("direct:forward");
+	            
+	            from("direct:forward")
+	            .tracing()
+	            .log(">>> ${body.convertedPolicyInfoRequest.policyInfo.policyNumber}")
+	            .transform().constant("Hello World1")
+	            .setHeader(Exchange.HTTP_RESPONSE_CODE, constant(201));
+	            
+	        }
+	    }
+	 
+	 
+	 @Component
+	    class PushMessagesToKafka extends RouteBuilder {
+
+	        @Override
+	        public void configure() {
+	        	 CamelContext context = new DefaultCamelContext();
+	        	 
+	        	 KafkaComponent kafka = new KafkaComponent();
+	                kafka.setBrokers("n01apl4366.tent.trt.csaa.pri:9092,n01apl4414.tent.trt.csaa.pri:9092");
+	                context.addComponent("kafka", kafka);
+	                
+	            restConfiguration()
+	            		.contextPath("/kafka")
+	            		.enableCORS(true)
+	            		.apiContextPath("/api-doc2")
+	            		.apiProperty("api.title", "REST API to Pus message to kafka")
+	                    .apiProperty("api.version", "1.0")
+	                    .apiProperty("cors", "true")
+	                    .apiContextRouteId("doc-api")
+	                    .bindingMode(RestBindingMode.json);
+	            	
+	            rest("/kafka").description("POST Kafka REST service")
+	                 .id("api-Kafka")
+	                 .post("/messge").description("Pushing messages to Kafka")
+	                .to("direct:Kafka");
+
+	            from("direct:Kafka")
+	            .to("kafka:soatest")
+	            .tracing()
+	            .log(">>> ${body}")
+	            .transform().constant("Hello World2")
+	            .setHeader(Exchange.HTTP_RESPONSE_CODE, constant(201));
+	            
+	        }
+	    }
+	 
+
+}

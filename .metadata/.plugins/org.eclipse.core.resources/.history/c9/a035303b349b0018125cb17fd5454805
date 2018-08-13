@@ -1,0 +1,157 @@
+
+package aaancnu_wsdl_retrieveconvertedpolicyinfo_version2.com.aaancnuit;
+
+import java.util.ArrayList;
+import java.util.List;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlType;
+import aaancnu_common_version2.com.aaancnuit.ApplicationContext;
+import aaancnu_retrieveconvertedpolicyinfo_version2.com.aaancnuit.PolicySource;
+
+
+/**
+ * <p>Java class for retrieveConvertedPolicyInfoRequest complex type.
+ * 
+ * <p>The following schema fragment specifies the expected content contained within this class.
+ * 
+ * <pre>
+ * &lt;complexType name="retrieveConvertedPolicyInfoRequest">
+ *   &lt;complexContent>
+ *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+ *       &lt;sequence>
+ *         &lt;element name="applicationContext" type="{http://www.aaancnuit.com.AAANCNU_Common_version2}ApplicationContext" minOccurs="0"/>
+ *         &lt;element name="policy" type="{http://www.aaancnuit.com.AAANCNU_RetrieveConvertedPolicyInfo_version2}PolicySource" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;element name="returnOnlyWhenActive" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
+ *         &lt;element name="messageExtension" type="{http://www.w3.org/2001/XMLSchema}anyType" maxOccurs="unbounded" minOccurs="0"/>
+ *       &lt;/sequence>
+ *     &lt;/restriction>
+ *   &lt;/complexContent>
+ * &lt;/complexType>
+ * </pre>
+ * 
+ * 
+ */
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(name = "retrieveConvertedPolicyInfoRequest", propOrder = {
+    "applicationContext",
+    "policy",
+    "returnOnlyWhenActive",
+    "messageExtension"
+})
+public class RetrieveConvertedPolicyInfoRequest {
+
+    protected ApplicationContext applicationContext;
+    protected List<PolicySource> policy;
+    @XmlElement(defaultValue = "false")
+    protected Boolean returnOnlyWhenActive;
+    protected List<Object> messageExtension;
+
+    /**
+     * Gets the value of the applicationContext property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link ApplicationContext }
+     *     
+     */
+    public ApplicationContext getApplicationContext() {
+        return applicationContext;
+    }
+
+    /**
+     * Sets the value of the applicationContext property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link ApplicationContext }
+     *     
+     */
+    public void setApplicationContext(ApplicationContext value) {
+        this.applicationContext = value;
+    }
+
+    /**
+     * Gets the value of the policy property.
+     * 
+     * <p>
+     * This accessor method returns a reference to the live list,
+     * not a snapshot. Therefore any modification you make to the
+     * returned list will be present inside the JAXB object.
+     * This is why there is not a <CODE>set</CODE> method for the policy property.
+     * 
+     * <p>
+     * For example, to add a new item, do as follows:
+     * <pre>
+     *    getPolicy().add(newItem);
+     * </pre>
+     * 
+     * 
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link PolicySource }
+     * 
+     * 
+     */
+    public List<PolicySource> getPolicy() {
+        if (policy == null) {
+            policy = new ArrayList<PolicySource>();
+        }
+        return this.policy;
+    }
+
+    /**
+     * Gets the value of the returnOnlyWhenActive property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Boolean }
+     *     
+     */
+    public Boolean isReturnOnlyWhenActive() {
+        return returnOnlyWhenActive;
+    }
+
+    /**
+     * Sets the value of the returnOnlyWhenActive property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Boolean }
+     *     
+     */
+    public void setReturnOnlyWhenActive(Boolean value) {
+        this.returnOnlyWhenActive = value;
+    }
+
+    /**
+     * Gets the value of the messageExtension property.
+     * 
+     * <p>
+     * This accessor method returns a reference to the live list,
+     * not a snapshot. Therefore any modification you make to the
+     * returned list will be present inside the JAXB object.
+     * This is why there is not a <CODE>set</CODE> method for the messageExtension property.
+     * 
+     * <p>
+     * For example, to add a new item, do as follows:
+     * <pre>
+     *    getMessageExtension().add(newItem);
+     * </pre>
+     * 
+     * 
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link Object }
+     * 
+     * 
+     */
+    public List<Object> getMessageExtension() {
+        if (messageExtension == null) {
+            messageExtension = new ArrayList<Object>();
+        }
+        return this.messageExtension;
+    }
+
+}

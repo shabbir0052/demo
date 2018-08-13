@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions name="RetrieveConvertedPolicyInfoversion2_DEF" targetNamespace="http://www.aaancnuit.com.AAANCNU_WSDL_RetrieveConvertedPolicyInfo_version2" xmlns:AAANCNU_WSDL_RetrieveConvertedPolicyInfo_version2="http://www.aaancnuit.com.AAANCNU_WSDL_RetrieveConvertedPolicyInfo_version2"
+	xmlns:AAANCNU_RetrieveConvertedPolicyInfo_version2="http://www.aaancnuit.com.AAANCNU_RetrieveConvertedPolicyInfo_version2"
+	xmlns:AAANCNU_Common_version2="http://www.aaancnuit.com.AAANCNU_Common_version2"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+
+
+	<types>
+		<xsd:schema targetNamespace="http://www.aaancnuit.com.AAANCNU_WSDL_RetrieveConvertedPolicyInfo_version2">
+			<xsd:import namespace="http://www.aaancnuit.com.AAANCNU_RetrieveConvertedPolicyInfo_version2" schemaLocation="RetrieveConvertedPolicyInfo_version2.xsd"/>
+			<xsd:import namespace="http://www.aaancnuit.com.AAANCNU_Common_version2" schemaLocation="Common_version2.xsd"/>
+	<!-- TYPE REQUIRED FOR A PARAMETER -->
+			<xsd:complexType name="retrieveConvertedPolicyInfoRequest">
+				<xsd:sequence minOccurs="1" maxOccurs="1">
+					<xsd:element name="applicationContext" type="AAANCNU_Common_version2:ApplicationContext" minOccurs="0" maxOccurs="1"/>
+					<xsd:element name="policy" type="AAANCNU_RetrieveConvertedPolicyInfo_version2:PolicySource" minOccurs="0" maxOccurs="unbounded"/>
+					<xsd:element name="returnOnlyWhenActive" type="xsd:boolean" minOccurs="0" maxOccurs="1" default="false" />
+					<xsd:element name="messageExtension" type="xsd:anyType" minOccurs="0"  maxOccurs="unbounded" />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:element name="retrieveConvertedPolicyInfoRequest" type="AAANCNU_WSDL_RetrieveConvertedPolicyInfo_version2:retrieveConvertedPolicyInfoRequest"/>
+
+	<!-- TYPE REQUIRED FOR A PARAMETER -->
+			<xsd:complexType name="retrieveConvertedPolicyInfoResponse">
+				<xsd:sequence minOccurs="1" maxOccurs="1">
+					<xsd:element name="applicationContext" type="AAANCNU_Common_version2:ApplicationContext" minOccurs="0" maxOccurs="1"/>
+					<xsd:element name="convertedPolicyInfo" type="AAANCNU_RetrieveConvertedPolicyInfo_version2:ConvertedPolicyInfo" minOccurs="0" maxOccurs="unbounded"/>
+					<xsd:element name="messageExtension" type="xsd:anyType" minOccurs="0"  maxOccurs="unbounded" />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:element name="retrieveConvertedPolicyInfoResponse" type="AAANCNU_WSDL_RetrieveConvertedPolicyInfo_version2:retrieveConvertedPolicyInfoResponse"/>
+
+		</xsd:schema>
+
+	</types>
+
+	<!-- MESSAGE BLOCKS -->
+	<message name="retrieveConvertedPolicyInfoRequest">
+		<part name="retrieveConvertedPolicyInfo" element="AAANCNU_WSDL_RetrieveConvertedPolicyInfo_version2:retrieveConvertedPolicyInfoRequest"/>
+	</message>
+	<message name="retrieveConvertedPolicyInfoResponse">
+		<part name="retrieveConvertedPolicyInfo" element="AAANCNU_WSDL_RetrieveConvertedPolicyInfo_version2:retrieveConvertedPolicyInfoResponse"/>
+	</message>
+
+	<message name="ErrorInfo">
+		<part name="errorInfo" element="AAANCNU_Common_version2:ErrorInfo"/>
+	</message>
+	<!-- end of MESSAGE BLOCKS -->
+
+	<!-- PORT TYPES -->
+	<portType name="RetrieveConvertedPolicyInfo">
+		<operation name="RetrieveConvertedPolicyInfo">
+		<documentation></documentation>
+			<input message="AAANCNU_WSDL_RetrieveConvertedPolicyInfo_version2:retrieveConvertedPolicyInfoRequest"/>
+			<output message="AAANCNU_WSDL_RetrieveConvertedPolicyInfo_version2:retrieveConvertedPolicyInfoResponse"/>
+			<fault name="ErrorResponseType" message="AAANCNU_WSDL_RetrieveConvertedPolicyInfo_version2:ErrorInfo"/>
+		</operation>
+	</portType>
+
+	<!-- end of PORT TYPES -->
+
+	<!-- BINDINGS -->
+	<binding name="RetrieveConvertedPolicyInfoSOAPBinding" type="AAANCNU_WSDL_RetrieveConvertedPolicyInfo_version2:RetrieveConvertedPolicyInfo">
+		<soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+			<operation name="RetrieveConvertedPolicyInfo">
+			<soap:operation soapAction="http://www.aaancnuit.com.retrieveConvertedPolicyInfo"/>
+			<input>
+				<soap:body use="literal"/>
+			</input>
+			<output>
+				<soap:body use="literal"/>
+			</output>
+			<fault name="ErrorResponseType">
+				<soap:fault name="ErrorResponseType" use="literal"/>
+			</fault>
+			</operation>
+	</binding>
+
+	<!-- end of BINDINGS -->
+
+	<!-- SERVICE BLOCKS -->
+	<service name="RetrieveConvertedPolicyInfoService">
+		<port name="RetrieveConvertedPolicyInfoSOAPPort" binding="AAANCNU_WSDL_RetrieveConvertedPolicyInfo_version2:RetrieveConvertedPolicyInfoSOAPBinding">
+			<soap:address location="http://www.aaancnuit.com.services/imaidm/RetrieveConvertedPolicyInfo.asmx"/>
+		</port>
+	</service>
+	<!-- end of SERVICE BLOCKS -->
+
+</definitions>
