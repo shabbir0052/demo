@@ -2,6 +2,9 @@ package com.csaa.config;
 
 
 
+import java.io.IOException;
+import java.security.GeneralSecurityException;
+
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 
@@ -10,6 +13,7 @@ import org.apache.camel.Exchange;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.component.kafka.KafkaComponent;
 import org.apache.camel.component.servlet.CamelHttpTransportServlet;
+import org.apache.camel.http.common.HttpCommonComponent;
 import org.apache.camel.impl.DefaultCamelContext;
 import org.apache.camel.component.cxf.CxfEndpoint;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,8 +29,21 @@ import org.springframework.stereotype.Component;
 import org.apache.camel.model.dataformat.JaxbDataFormat;
 import org.apache.camel.model.dataformat.JsonLibrary;
 import org.apache.camel.model.rest.RestBindingMode;
+import org.apache.camel.util.jsse.KeyManagersParameters;
+import org.apache.camel.util.jsse.KeyStoreParameters;
+import org.apache.camel.util.jsse.SSLContextParameters;
+import org.apache.camel.util.jsse.TrustManagersParameters;
+
 import com.csaa.bo.*;
 import com.csaa.processor.RequestProcessor;
+import com.sun.mail.iap.Protocol;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.apache.camel.component.http4.HttpComponent;
+import org.apache.camel.component.http4.HttpClientConfigurer;
+
+
 
 
 
@@ -35,10 +52,27 @@ import com.csaa.processor.RequestProcessor;
 @ComponentScan(basePackages="com.csaa.config")
 public class DemoApplication  extends SpringBootServletInitializer  {
 	
+	  private static final Logger LOG = LoggerFactory
+	    		.getLogger(DemoApplication.class);
+		
 	@Value("${camel.springboot.name}")
 	String contextPath;
 
+	@Autowired  
+	RequestProcessor requestProcessor;
+	
+	@Autowired  
+	 private JaxbDataFormat jaxb; 
+	
+	@Autowired
+	private JaxbDataFormat responseMappingjaxb;	
+	
+	@Autowired
+	private SSLContextParameters sslParameters;
 
+	@Autowired
+	private org.apache.camel.component.jackson.JacksonDataFormat  jacksonDataFormat;
+	
 	public static void main(String[] args) {
 		System.out.println("In the main");
 		SpringApplication.run(DemoApplication.class, args);
@@ -56,12 +90,6 @@ public class DemoApplication  extends SpringBootServletInitializer  {
 	
 	
 	@Bean
-	public com.csaa.processor.RequestProcessor requestProcessor(){
-		com.csaa.processor.RequestProcessor requestProcessor = new com.csaa.processor.RequestProcessor();		
-		return requestProcessor;
-	}
-	
-	@Bean
 	public org.apache.camel.component.cxf.CxfEndpoint cxfEndpoint() {
 		org.apache.camel.component.cxf.CxfEndpoint cxfEndpoint=new org.apache.camel.component.cxf.CxfEndpoint() ;		 
         cxfEndpoint.setAddress("http://pit-soaservices.tent.trt.csaa.pri:41000/RetrieveConvertedPolicyInfoV2");
@@ -76,13 +104,8 @@ public class DemoApplication  extends SpringBootServletInitializer  {
 	
 	}
 	
-	@Bean
-	ServletRegistrationBean servletRegistrationBean() {// settING up camel servel
-	    ServletRegistrationBean servlet = new ServletRegistrationBean
-	      (new CamelHttpTransportServlet(), contextPath+"/*");
-	    servlet.setName("CamelServlet");
-	    return servlet;
-	}
+
+
 	
 	@Bean
 	 public  org.apache.camel.component.jackson.JacksonDataFormat  jacksonDataFormat(){
@@ -97,15 +120,30 @@ public class DemoApplication  extends SpringBootServletInitializer  {
 		return formatPojo;
 	}
 	  
+
+
     @Bean
-    public JaxbDataFormat jaxb () {
-  	JaxbDataFormat retrieveConvertedPolicy = new JaxbDataFormat();
-  	retrieveConvertedPolicy.setContextPath(aaancnu_wsdl_retrieveconvertedpolicyinfo_version2.com.aaancnuit.RetrieveConvertedPolicyInfoRequest.class.getPackage().getName());
-  	
-  	return retrieveConvertedPolicy;
+    public JaxbDataFormat responseMappingjaxb () {
+  	JaxbDataFormat retrieveConvertedPolicyResp = new JaxbDataFormat();
+  	retrieveConvertedPolicyResp.setContextPath(aaancnu_wsdl_retrieveconvertedpolicyinfo_version2.com.aaancnuit.RetrieveConvertedPolicyInfoResponse.class.getPackage().getName());  	
+  	return retrieveConvertedPolicyResp;
   }
 	
-	
+    @Bean
+    public  SSLContextParameters sslParameters()  {
+
+        KeyStoreParameters ksp = new KeyStoreParameters();
+        ksp.setResource("prod.jks");
+        ksp.setPassword("csaa123");
+
+        TrustManagersParameters tmp = new TrustManagersParameters();
+        tmp.setKeyStore(ksp);
+
+        SSLContextParameters scp = new SSLContextParameters();
+        scp.setTrustManagers(tmp);
+        return scp;
+    }
+    
 	
 	 @Component
 	    class DemoRestApi extends RouteBuilder {
@@ -166,7 +204,6 @@ public class DemoApplication  extends SpringBootServletInitializer  {
 	            .tracing()
 	            .log(">>> ${body.convertedPolicyInfoRequest.policyInfo.policyNumber}")	            
 	            .transform().constant("Hello World1")
-	            //.to("spring-ws:http://foo.com/bar")
 	            .setHeader(Exchange.HTTP_RESPONSE_CODE, constant(201));
 	            
 	        }
@@ -230,8 +267,8 @@ public class DemoApplication  extends SpringBootServletInitializer  {
 	    class InvoceWSConvertedPolicyInfo extends RouteBuilder {
 
 	        @Override
-	        public void configure() {
-	        	//CamelContext context = new DefaultCamelContext();
+	        public void configure() 	{
+	        		            	            	            	        		        		        
 	            restConfiguration()
 	            		.contextPath("/convertedPolicySOAP")
 	            		.enableCORS(true)
@@ -253,17 +290,27 @@ public class DemoApplication  extends SpringBootServletInitializer  {
 	            
 	            from("direct:forwardSOAP")
 	            .log(">>>0 ${body.convertedPolicyInfoRequest.policyInfo.policyNumber}")	
-	            .bean(new com.csaa.processor.RequestProcessor(), "transformToConveredPolicySOAPServiceRequest")
+	            .bean(requestProcessor,"transformToConveredPolicySOAPServiceRequest")
 	            .log(">>>1 ${body}")
-	            .marshal(jaxb())	          
+	            .marshal(jaxb)
+	            .to("direct:invokeSOAP");	            
+	            from("direct:invokeSOAP")
 	            .log(">>>2 ${body}")
-	            .to("spring-ws:http://pit-soaservices.tent.trt.csaa.pri:41000/RetrieveConvertedPolicyInfoV2?soapAction=http://www.aaancnuit.com.retrieveConvertedPolicyInfo")
-	            .tracing()
-	            .log(">>>3 ${body}");
-	           //setHeader(Exchange.HTTP_RESPONSE_CODE, constant(200));
+	            .removeHeaders("*")// remove all the spurious heade, which camel was injecting plus the client headerr 
+	            .to("spring-ws:https://pit-soaservices.tent.trt.csaa.pri:8445/RetrieveConvertedPolicyInfoV2?soapAction=http://www.aaancnuit.com.retrieveConvertedPolicyInfo&sslContextParameters=#sslParameters")
+	            .log(">>>3 ${body}")
+	            .unmarshal(responseMappingjaxb)
+	            .bean(requestProcessor,"processGetConvertedPolicyResp")
+	            //.marshal(jacksonDataFormat)// if i am explicityl marshalling, then response is in base 64 format 
+	            .log(">>>4 ${body}")
+	           .setHeader(Exchange.HTTP_RESPONSE_CODE, constant(200));
 	            
 	        }
 	    }
+	 
+	 
+	 
+
 	 
 	 
 

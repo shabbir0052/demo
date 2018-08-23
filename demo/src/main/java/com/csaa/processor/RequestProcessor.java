@@ -7,17 +7,19 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import com.csaa.bo.ConvertedPolicyInfoRequest;
-
-
+import com.csaa.bo.ConvertedPolicySummary;
+import com.csaa.bo.RetrieveConvertedPolicyInfoResponse;
 
 import aaancnu_common_version2.com.aaancnuit.ApplicationContext;
+import aaancnu_retrieveconvertedpolicyinfo_version2.com.aaancnuit.ConvertedPolicy;
+import aaancnu_retrieveconvertedpolicyinfo_version2.com.aaancnuit.ConvertedPolicyInfo;
 import aaancnu_retrieveconvertedpolicyinfo_version2.com.aaancnuit.PolicySource;
 import aaancnu_wsdl_retrieveconvertedpolicyinfo_version2.com.aaancnuit.RetrieveConvertedPolicyInfoRequest;
 
 @Component
 public class RequestProcessor {
     private static final Logger LOG = LoggerFactory
-    		.getLogger(RequestProcessor.class);
+    		.getLogger(com.csaa.processor.RequestProcessor.class);
 	
 	public RetrieveConvertedPolicyInfoRequest transformToConveredPolicySOAPServiceRequest(com.csaa.bo.ConvertedPolicyInfo policyInfoJson) {
 		RetrieveConvertedPolicyInfoRequest output=null;
@@ -53,21 +55,36 @@ public class RequestProcessor {
 						
 	}
 	
-	public RetrieveConvertedPolicyInfoRequest transformToConveredPolicySOAPServiceRequestString(String policyInfoJson) {
-		RetrieveConvertedPolicyInfoRequest output=null;
-    	try {
-    		if (policyInfoJson==null) {
-    			throw new Exception
-    			("API Request  was not bound to the method via"
-        				+ "integeration framework");
-    		}
-    		LOG.info("-->"+policyInfoJson);
-    		
-    	} catch(Exception e) {
-    		LOG.error("ConverPolicyInfo message transalation failed  ", e);
-    	}
-    	 
-    	return output;
+	public RetrieveConvertedPolicyInfoResponse processGetConvertedPolicyResp (aaancnu_wsdl_retrieveconvertedpolicyinfo_version2.com.aaancnuit.RetrieveConvertedPolicyInfoResponse resp) {
+		
+		
+		RetrieveConvertedPolicyInfoResponse output= new RetrieveConvertedPolicyInfoResponse();
+		List<ConvertedPolicyInfo> convertedPoliciesInfo= resp.getConvertedPolicyInfo();
+		for ( ConvertedPolicyInfo ele:convertedPoliciesInfo) {
+			ConvertedPolicy  convPol= ele.getConvertedPolicy();
+			PolicySource sourcePol= ele.getRequestedPolicy();
+			com.csaa.bo.ConvertedPolicy desConvPol= new com.csaa.bo.ConvertedPolicy();
+			desConvPol.setPolicyNumber(convPol.getPolicyNumber());
+			desConvPol.setDataSource(convPol.getDataSource());
+			desConvPol.setType(convPol.getType());
+			desConvPol.setStatus(convPol.getStatus());
+			
+			com.csaa.bo.RequestedPolicy destSourcePol = new com.csaa.bo.RequestedPolicy(); 
+			destSourcePol.setPolicyNumber(sourcePol.getPolicyNumber());
+			destSourcePol.setDataSource(sourcePol.getDataSource());
+			com.csaa.bo.ConvertedPolicySummary convPolSumm= new com.csaa.bo.ConvertedPolicySummary();
+			convPolSumm.setConvertedPolicy(desConvPol);
+			convPolSumm.setRequestedPolicy(destSourcePol);
+		    List<ConvertedPolicySummary> list=output.getConvertedPolicyInfo();
+		    list.add(convPolSumm);        					 
+			
+		}
+		
+		
+		return output;
+		
 	}
-
+	
+	
+	
 }

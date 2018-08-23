@@ -125,8 +125,26 @@
         	 <artifactId>camel-jaxb</artifactId>         	 
         	 </dependency>
         
+		<dependency>
+		    <groupId>org.apache.camel</groupId>
+		    <artifactId>camel-http4</artifactId>
+		</dependency>        
+        
 	</dependencies>
   <build>
+          <pluginManagement>
+		<plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </pluginManagement>
+  
     <plugins>
       <plugin>
         <groupId>org.springframework.boot</groupId>
@@ -161,7 +179,28 @@
 						</goals>
 					</execution>
 				</executions>
-			</plugin>      
+			</plugin>    
+			
+			  <!-- plugin>
+	            <groupId>org.codehaus.mojo</groupId>
+	            <artifactId>jaxb2-maven-plugin</artifactId>
+	            <version>2.2</version>
+	            <executions>
+	                <execution>
+	                    <id>jaxb</id>
+	                    <goals>
+	                        <goal>xjc</goal>
+	                    </goals>
+	                </execution>
+	            </executions>
+	            <configuration>
+	            <wsdl>true</wsdl>
+				<schemaFiles>${basedir}/src/main/resources/wsdl/retrieveConvertedPolicyInfo_version2.wsdl</schemaFiles>
+	            </configuration>
+	        </plugin-->
+			
+			
+			  
     </plugins>
   </build>
 </project>
