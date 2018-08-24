@@ -39,7 +39,7 @@ public class RequestProcessor {
 	
 	protected RetrieveConvertedPolicyInfoRequest processCreateConveredPolicySOAPServiceRequest(com.csaa.bo.ConvertedPolicyInfo policyInfoJson)
 			 throws Exception {
-		
+		LOG.info(">>>>>>I am in processCreateConveredPolicySOAPServiceRequest <<<<<<<<<<<");
 		ApplicationContext appCtx= new ApplicationContext();
 		appCtx.setApplication("CamelPOC");
 		appCtx.setSubSystem("ConvertedPolicyAPI");
@@ -57,7 +57,8 @@ public class RequestProcessor {
 	
 	public RetrieveConvertedPolicyInfoResponse processGetConvertedPolicyResp (aaancnu_wsdl_retrieveconvertedpolicyinfo_version2.com.aaancnuit.RetrieveConvertedPolicyInfoResponse resp) {
 		
-		
+		LOG.info(">>>>>>I am in processGetConvertedPolicyResp <<<<<<<<<<<");
+
 		RetrieveConvertedPolicyInfoResponse output= new RetrieveConvertedPolicyInfoResponse();
 		List<ConvertedPolicyInfo> convertedPoliciesInfo= resp.getConvertedPolicyInfo();
 		for ( ConvertedPolicyInfo ele:convertedPoliciesInfo) {

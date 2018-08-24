@@ -210,58 +210,58 @@ public class DemoApplication  extends SpringBootServletInitializer  {
 	    }
 	 
 	 
-	 @Component
-	    class PushMessagesToKafka extends RouteBuilder {
-
-	        @Override
-	        public void configure() {
-
-	                
-	            restConfiguration()
-	            		.contextPath("/kafka")
-	            		.enableCORS(true)
-	            		.apiContextPath("/api-doc2")
-	            		.apiProperty("api.title", "REST API to Pus message to kafka")
-	                    .apiProperty("api.version", "1.0")
-	                    .apiProperty("cors", "true")
-	                    .apiContextRouteId("doc-api")
-	                    .bindingMode(RestBindingMode.json);
-	            	
-	            rest("/kafka").description("POST Kafka REST service")
-	                 .id("api-Kafka")
-	                 .post("/messge").description("Pushing messages to Kafka")
-	                .to("direct:Kafka");
-
-	            from("direct:Kafka")
-	            .to("kafka:soatest")
-	            .routeId("ToKafka")
-	            .log(">>>Putting the message---> ${body}")
-	            .transform().constant("Hello World2")
-	            .setHeader(Exchange.HTTP_RESPONSE_CODE, constant(201));
-	            
-	        }
-	    }
-	 
-	 @Component
-	    class ReadMessagesFromKafka extends RouteBuilder {
-
-	        @Override
-	        public void configure() {
-	        	
-                from("kafka:soatest?brokers=n01apl4366.tent.trt.csaa.pri:9092,n01apl4414.tent.trt.csaa.pri:9092,N01APL4409.tent.trt.csaa.pri:9092"
-                        + "&maxPollRecords=10"
-                        + "&consumersCount=1"
-                        + "&groupId=SOAGroup")
-                        .routeId("FromKafka")
-                    .log("<<<<Reading the message ${body}");
-	        	
-              //  + "&seekTo=beginning"
-
-	        	
-	        }
-	 }
-	 
-	 
+//	 @Component
+//	    class PushMessagesToKafka extends RouteBuilder {
+//
+//	        @Override
+//	        public void configure() {
+//
+//	                
+//	            restConfiguration()
+//	            		.contextPath("/kafka")
+//	            		.enableCORS(true)
+//	            		.apiContextPath("/api-doc2")
+//	            		.apiProperty("api.title", "REST API to Pus message to kafka")
+//	                    .apiProperty("api.version", "1.0")
+//	                    .apiProperty("cors", "true")
+//	                    .apiContextRouteId("doc-api")
+//	                    .bindingMode(RestBindingMode.json);
+//	            	
+//	            rest("/kafka").description("POST Kafka REST service")
+//	                 .id("api-Kafka")
+//	                 .post("/messge").description("Pushing messages to Kafka")
+//	                .to("direct:Kafka");
+//
+//	            from("direct:Kafka")
+//	            .to("kafka:soatest")
+//	            .routeId("ToKafka")
+//	            .log(">>>Putting the message---> ${body}")
+//	            .transform().constant("Hello World2")
+//	            .setHeader(Exchange.HTTP_RESPONSE_CODE, constant(201));
+//	            
+//	        }
+//	    }
+//	 
+//	 @Component
+//	    class ReadMessagesFromKafka extends RouteBuilder {
+//
+//	        @Override
+//	        public void configure() {
+//	        	
+//                from("kafka:soatest?brokers=n01apl4366.tent.trt.csaa.pri:9092,n01apl4414.tent.trt.csaa.pri:9092,N01APL4409.tent.trt.csaa.pri:9092"
+//                        + "&maxPollRecords=10"
+//                        + "&consumersCount=1"
+//                        + "&groupId=SOAGroup")
+//                        .routeId("FromKafka")
+//                    .log("<<<<Reading the message ${body}");
+//	        	
+//              //  + "&seekTo=beginning"
+//
+//	        	
+//	        }
+//	 }
+//	 
+//	 
 	 
 	 @Component
 	    class InvoceWSConvertedPolicyInfo extends RouteBuilder {
@@ -297,11 +297,11 @@ public class DemoApplication  extends SpringBootServletInitializer  {
 	            from("direct:invokeSOAP")
 	            .log(">>>2 ${body}")
 	            .removeHeaders("*")// remove all the spurious heade, which camel was injecting plus the client headerr 
-	            .to("spring-ws:https://pit-soaservices.tent.trt.csaa.pri:8445/RetrieveConvertedPolicyInfoV2?soapAction=http://www.aaancnuit.com.retrieveConvertedPolicyInfo&sslContextParameters=#sslParameters")
+	            .to("spring-ws:https://prod-soaservices.ent.rt.csaa.com:8445/RetrieveConvertedPolicyInfoV2?soapAction=http://www.aaancnuit.com.retrieveConvertedPolicyInfo&sslContextParameters=#sslParameters")
 	            .log(">>>3 ${body}")
 	            .unmarshal(responseMappingjaxb)
 	            .bean(requestProcessor,"processGetConvertedPolicyResp")
-	            //.marshal(jacksonDataFormat)// if i am explicityl marshalling, then response is in base 64 format 
+	            .marshal(jacksonDataFormat)// if i am explicityl marshalling, then response is in base 64 format 
 	            .log(">>>4 ${body}")
 	           .setHeader(Exchange.HTTP_RESPONSE_CODE, constant(200));
 	            
